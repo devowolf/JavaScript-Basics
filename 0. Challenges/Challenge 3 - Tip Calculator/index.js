@@ -4,20 +4,31 @@
 
 // Amounts paid in $
 var paidAmounts = [124, 48, 268];
+// Create a new empty array to store tip amounts given to waiters
+var tipAmounts = new Array();
 
 // Tip Calculator Function
-function tipCalculator(arr) {
-    var tips = new Array();
-    for(i = 0; i < arr.length; i++) {
-        tips.push( parseFloat( (arr[i] * 0.2).toFixed(2) ) );
-    }
-    return tips;
-}
-// Create the tipAmounts array and assign it the values returned by the function
-var tipAmounts = tipCalculator(paidAmounts);
+function tipCalculator(bill) {
 
-// Update the paidAmounts array by adding tips to each value
+    // Declaring percentage variable
+    var percentage;
+    
+    // Use Conditions to calculate the tip
+    if(bill < 50) {
+        percentage = .2;
+    } else if(bill > 50 && bill < 200) {
+        percentage = .15;
+    } else {
+        percentage = .1;
+    }
+
+    // cut the decimal value to only 2 values after the decimal point and return it
+    return parseFloat( (bill * percentage).toFixed(2) );
+}
+
+// Modify both tipAmounts and paidAmounts arrays by calculating tips and adding them to each paid amount
 for(i = 0; i < paidAmounts.length; i++) {
+    tipAmounts.push( tipCalculator(paidAmounts[i]) );
     paidAmounts[i] = paidAmounts[i] + tipAmounts[i];
 }
 
