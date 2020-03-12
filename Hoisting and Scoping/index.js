@@ -69,11 +69,20 @@ function first() {
 
         // Variables of the parent function and scope's are accessible here!
         console.log(x, y, z);
+        
+        // Call a function declared in global context
+        fooBar();
+
     }
+}
+
+function fooBar() {
+    console.log('foobar');
+
+    // Trying to access variables defined in the first() and child() functions
+    // Should return an error because no matter where the function call is, declaration dominates
+    console.log(y, z); 
 }
 
 // Calling the first() function to see the output
 first();
-
-// if we try to use variable defined within the scope of a child bloc
-console.log(y); // returns an error
