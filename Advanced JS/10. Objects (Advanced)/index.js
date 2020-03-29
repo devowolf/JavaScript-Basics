@@ -1,5 +1,5 @@
 /*
-    Objects and Functions (Advanced)
+    Objects (Advanced)
 */
 
 // Function Constructor
@@ -37,3 +37,31 @@ var mike = new Person('Michael', 'Miller', 1991, 'Developer');
 var jane = new Person('Jane', 'Smith', 1992, 'Designer');
 
 console.log("Mike: ", mike, "\nJane: ", jane);
+
+/*
+    * Object.create()
+*/
+
+// Another way of creating objects that inherit directly from the parent, using Object.create() method
+var personPrototype = {
+    calcAge: function() {
+        return (2020 - this.yearOfBirth);
+    }
+}
+
+// Create an person object from above specified prototype
+var sahil = Object.create(personPrototype, {
+    name: { value: 'Sahil Saini' },
+    yearOfBirth: { value: 1999 },
+    job: { value: 'Developer' }
+});
+
+console.log(sahil);
+
+// Add properties to the object explicitly, rather than using the second argument of Object.create()
+var harman = Object.create(personPrototype);
+harman.name = 'Harman Saini';
+harman.yearOfBirth = 2001;
+harman.job = 'Student';
+
+console.log(harman);
