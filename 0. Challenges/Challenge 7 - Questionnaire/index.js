@@ -41,18 +41,23 @@ var q3 = new Question(
 console.log("Game Started.");
 // Store all these above question objects into an array
 var questions = [q1, q2, q3];
-
+var globalScore = 0;
 // Create an infinite loop, to iterate
-while(1) {
+while( 1 ) {
     var n = Math.floor(Math.random() * questions.length);
     questions[n].displayQuestion();
 
     var answer = prompt("Please enter your answer: ");
 
+    // Convert answer to integer type and check if its correct
     if( parseInt(answer) === questions[n].correctAnswer) {
         console.log("Correct.");
+        // Increment value of globalScore on correct answer and log it to the console
+        globalScore++;
+        console.log("Score: " + globalScore);
     } else if( answer === "exit" ) {
         break;
     }
 }
 console.log("Game Finished.");
+console.log("Total Score:", globalScore);
